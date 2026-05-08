@@ -226,11 +226,21 @@
 
         const quotes = [
             {t: "He is no fool who gives what he cannot keep to gain what he cannot lose.", a: "Jim Elliot"},
-            {t: "Expect great things from God. Attempt great things for God.", a: "William Carey"}
+            {t: "Expect great things from God. Attempt great things for God.", a: "William Carey"},
+            {t: "If Jesus Christ be God and died for me, then no sacrifice can be too great for me to make for Him.", a: "C.T. Studd"},
+            {t: "God does not begin by asking us about our ability, but only about our availability.", a: "Hudson Taylor"},
+            {t: "We must be global Christians with a global vision because our God is a global God.", a: "John Stott"},
+            {t: "The great commission is not an option to be considered; it is a command to be obeyed.", a: "Hudson Taylor"},
+            {t: "You have one business on earth – to save souls.", a: "John Wesley"},
+            {t: "To know the will of God, we need an open Bible and an open map.", a: "William Carey"},
+            {t: "The mark of a great church is not its seating capacity, but its sending capacity.", a: "Mike Stachura"},
+            {t: "God isn't looking for people of great faith, but for individuals ready to follow Him.", a: "Hudson Taylor"}
         ];
 
         function rotate() {
-            const q = quotes[Math.floor(Math.random() * quotes.length)];
+            // Calculate days since Unix epoch to change the quote exactly once every 24 hours
+            const daysSinceEpoch = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
+            const q = quotes[daysSinceEpoch % quotes.length];
             document.getElementById('quote-display').innerText = `"${q.t}"`;
             document.getElementById('author-display').innerText = `— ${q.a}`;
         }
